@@ -1,0 +1,87 @@
+#----------	Makefile Evaluator -- All the following variables can be edited. ----------#
+
+SRC		=	$(SRCDIR)#- *.c -#
+BSRC	=	$(SRCDIR)#- *_bonus.c -#
+
+SRCDIR	=	#- The directory name for source files "src/" for example.				  -#
+OBJDIR	=	#- The directory name for object files "obj/" for example.				  -#
+EVNAME	=	#- The directory name of the proyect to evaluate.						  -#
+
+LIBDIR	=	#- The paths to every static library needed to compile the final program. -#
+
+NAME	=	#- The name of the final program.										  -#
+BONUS	=	#- The name of the bonus final program.									  -#
+
+CC		=	#- The compiler to use on objects.										  -#
+GCC		=	#- The compiler for the final program.									  -#
+CFLAGS	=	#- The flags which you will compile cc and gcc.							  -#
+IFLAGS	=	#- The flags used to find headers outside this directory.				  -#
+
+GITURL	=	#- The url path to git clone the proyect to evaluate.					  -#
+
+#---------- Only edit the following if: IGLAGS added or remove sub-makefile. ----------#
+
+OBJ		=	$(SRC:$(SRCDIR)%.c=$(OBJDIR)%.o)
+BOBJ	=	$(BSRC:$(SRCDIR)%.c=$(OBJDIR)%.o)
+
+.PHONY: all clean fclean re reset
+
+all: $(NAME)
+
+#- Creates a directory named $(OBJDIR).												  -#
+$(OBJDIR):
+	@mkdir -p $@
+#
+#- Compiles each %(generic).c source into its respective %(generic).o				  -#
+$(OBJDIR)%.o: $(SRCDIR)%.c
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "\e[0;35m -$@ created."
+#
+#- Comment or remove the third command line in case no sub-makefile must be executed. -#	
+#- Add $(IFLAGS) after $(CFLAGS) on the fourth command line if needed.				  -#
+$(NAME): $(OBJDIR) $(OBJ)
+	@echo "\e[0;32m"
+	@git clone $(GITURL) $(EVNAME)
+	@cd $(EVNAME) && make
+	@$(GCC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBDIR)
+	@echo "\e[0;32m $@ ready."
+#
+#- Comment or remove the third command line in case no sub-makefile must be executed. -#	
+#- Add $(IFLAGS) after $(CFLAGS) on the fourth command line if needed.				  -#
+bonus: $(OBJDIR) $(BOBJ)
+	@echo "\e[0;32m"
+	@git clone $(GITURL) $(EVNAME)
+	@cd $(EVNAME) && make bonus
+	@$(GCC) $(CFLAGS) -o $(BONUS) $(BOBJ) $(LIBDIR)
+	@echo "\e[0;32m $@ ready."
+#
+#- Executes the final program made with $(NAME), using valgrind to check memory leak. -#
+execute:
+	@clear
+	@echo "\e[0;32m Executing $(NAME)."
+	@valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./$(NAME)
+#
+#- Executes the final program made with "bonus", using valgrind to check memory leak. -#
+bexecute:
+	@clear
+	@echo "\e[0;32m Executing $(BONUS)."
+	@valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./$(BONUS)
+#
+#- Resets the evaluator by removing the $(EVNAME) directory.						  -#
+del:
+	@rm -rf $(EVNAME)
+#
+#- Removes every object inside $(OBJDIR) and the directory itself.					  -#
+clean:
+	@rm -rf $(OBJDIR)
+	@echo "\e[0;32m Cleaning complete."
+#
+#- Removes the final files made with this makefile, executing clean as well.		  -#
+fclean: clean
+	@rm -f $(NAME)
+	@rm -f $(BONUS)
+	@echo "\e[0;32m Files removed."
+	@cd $(EVNAME) && make fclean
+#
+#- Restarts the Makefile. Erases everything to default, and executes again.			  -#
+re: fclean all
