@@ -17,8 +17,6 @@ GCC		=	#- The compiler for the final program.									  -#
 CFLAGS	=	#- The flags which you will compile cc and gcc.							  -#
 IFLAGS	=	#- The flags used to find headers outside this directory.				  -#
 
-GITURL	=	#- The url path to git clone the proyect to evaluate.					  -#
-
 #---------- Only edit the following if: IGLAGS added or remove sub-makefile. ----------#
 
 OBJ		=	$(SRC:$(SRCDIR)%.c=$(OBJDIR)%.o)
