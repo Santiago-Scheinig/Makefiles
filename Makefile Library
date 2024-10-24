@@ -15,7 +15,7 @@ GCC		=	#- The compiler for the final program.									-#
 CFLAGS	=	#- The flags which you will compile cc the objects.						-#
 IFLAGS	=	#- The flags used to find headers outside this directory.				-#
 
-#---------- Edit the following if: IGLAGS added or no sub-makefile needed. ----------#
+#---------- Edit the following if: IFLAGS added or no sub-makefile needed. ----------#
 
 OBJ		=	$(SRC:$(SRCDIR)%.c=$(OBJDIR)%.o)
 BOBJ	=	$(BSRC:$(SRCDIR)%.c=$(OBJDIR)%.o)
