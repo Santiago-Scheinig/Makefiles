@@ -39,7 +39,6 @@ $(OBJDIR)%.o: $(SRCDIR)%.c
 #- Add $(IFLAGS) after $(CFLAGS) on the fourth command line if needed.				  -#
 $(NAME): $(OBJDIR) $(OBJ)
 	@echo "\e[0;32m"
-	@git clone $(GITURL) $(EVNAME)
 	@cd $(EVNAME) && make
 	@$(GCC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBDIR)
 	@echo "\e[0;32m $@ ready."
@@ -48,7 +47,6 @@ $(NAME): $(OBJDIR) $(OBJ)
 #- Add $(IFLAGS) after $(CFLAGS) on the fourth command line if needed.				  -#
 bonus: $(OBJDIR) $(BOBJ)
 	@echo "\e[0;32m"
-	@git clone $(GITURL) $(EVNAME)
 	@cd $(EVNAME) && make bonus
 	@$(GCC) $(CFLAGS) -o $(BONUS) $(BOBJ) $(LIBDIR)
 	@echo "\e[0;32m $@ ready."
