@@ -54,13 +54,13 @@ bonus: $(OBJDIR) $(BOBJ)
 #- Executes the final program made with $(NAME), using valgrind to check memory leak. -#
 execute:
 	@clear
-	@echo "\e[0;32m Executing $(NAME)."
+	@echo "\e[0;32m Executing $(NAME).\e[0;30m"
 	@valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./$(NAME)
 #
 #- Executes the final program made with "bonus", using valgrind to check memory leak. -#
 bexecute:
 	@clear
-	@echo "\e[0;32m Executing $(BONUS)."
+	@echo "\e[0;32m Executing $(BONUS).\e[0;30m"
 	@valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./$(BONUS)
 #
 #- Resets the evaluator by removing the $(EVNAME) directory.						  -#
