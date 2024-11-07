@@ -11,9 +11,8 @@ NAME	=	#- The name of the final program.										-#
 BONUS	=	#- The name of the bonus final program.									-#
 
 CC		=	#- The compiler for the object compilation.								-#
-GCC		=	#- The compiler for the final program.									-#
-CFLAGS	=	#- The flags which you will compile cc the objects.						-#
-IFLAGS	=	#- The flags used to find headers outside this directory.				-#
+GCC		=	#- The compiler for the final library.									-#
+CFLAGS	=	#- The flags which you will compile $(CC) the objects.					-#
 
 #---------- Edit the following if: IFLAGS added or no sub-makefile needed. ----------#
 
@@ -37,15 +36,15 @@ $(OBJDIR)%.o: $(SRCDIR)%.c
 $(NAME): $(OBJDIR) $(OBJ)
 	@echo "\e[0;32m"
 	@cd $(MAKENM) && make bonus
-	@ar rcs $(NAME) $(OBJ) $(LIBDIR)
+	@ar rcs $(NAME) $(OBJ)
 	@echo "\e[0;32m $@ linked.\n"
 #
 #- Remove the second command line in case a no sub-makefile must be executed.		  -#
 bonus: $(OBJDIR) $(BOBJ)
 	@echo "\e[0;32m"
 	@cd $(MAKENM) && make bonus
-	@ar rcs $(NAME) $(BOBJ) $(LIBDIR)
-	@echo "\e[0;32m Bonus $@ linked.\n"
+	@ar rcs $(NAME) $(BOBJ)
+	@echo "\e[0;32m Bonus $(BONUS) linked.\n"
 #
 #- Removes every object inside $(OBJDIR) and the directory itself.					  -#
 clean:
