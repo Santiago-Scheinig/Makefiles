@@ -50,7 +50,7 @@ $(OBJDIR)%.o: $(SRCDIR)%.c
 	@echo "\e[0;35m -$@ created."
 #
 #- Compiles the main object with the program library into the final executable.		-#
-$(NAME): $(PSLIB) $(MOBJ)
+$(NAME): $(LIBEXE) $(MOBJ)
 	@echo "\e[0;32m"
 	@$(CC) $(CFLAGS) -o $(NAME) $(MOBJ) $(LIBEXE)
 	@echo "\e[0;32m $@ program ready.\n"
