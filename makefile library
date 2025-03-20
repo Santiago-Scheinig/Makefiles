@@ -1,18 +1,17 @@
 #----------	Makefile Library -- All the following variables can be edited. ----------#
 
-SRC		=	$(SRCDIR)#- *.c -#
-BSRC	=	$(SRCDIR)#- *_bonus.c // add $(SRC) if needed on the bonus library.     -#
+SRC		=	$(SRCDIR)#- *.c															-#
+BSRC	=	$(SRCDIR)#- *_bonus.c													-#
 
 SRCDIR	=	#- The directory name for source files "src/" for example.				-#
 OBJDIR	=	#- The directory name for object files "obj/" for example.				-#
 MAKENM	=	#- The directory name of the sub-makefile to execute, if needed.	    -#
 
-NAME	=	#- The name of the final program.										-#
-BONUS	=	#- The name of the bonus final program.									-#
+NAME	=	#- The name of the final library.										-#
+BONUS	=	#- The name of the bonus final library.									-#
 
-CC		=	#- The compiler for the object compilation.								-#
-GCC		=	#- The compiler for the final library.									-#
-CFLAGS	=	#- The flags which you will compile $(CC) the objects.					-#
+CC		=	#- The object compiler sintax.											-#
+CFLAGS	=	#- The flags which you will compile the objects.						-#
 
 #---------- Edit the following if: IFLAGS added or no sub-makefile needed. ----------#
 

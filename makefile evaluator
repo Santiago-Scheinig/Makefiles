@@ -1,7 +1,7 @@
 #----------	Makefile Evaluator -- All the following variables can be edited. ----------#
 
-SRC		=	$(SRCDIR)#- *.c -#
-BSRC	=	$(SRCDIR)#- *_bonus.c -#
+SRC		=	$(SRCDIR)#- *.c															-#
+BSRC	=	$(SRCDIR)#- *_bonus.c													-#
 
 SRCDIR	=	#- The directory name for source files "src/" for example.				  -#
 OBJDIR	=	#- The directory name for object files "obj/" for example.				  -#
